@@ -1,11 +1,8 @@
 /*
 let request = require('request');
-
 let apiKey = 'f443b6d00ebe5194a041b72dca707ff0';
 let city = 'portland';
 let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
-
-
 
 request(url, function (err, response, body) {
   if(err){
@@ -37,8 +34,10 @@ rl.on('line', (line) => {
 }).on('close', () => {
   console.log('Have a great day!');
   process.exit(0);
-});const AssistantV1 = require('ibm-watson/assistant/v1');
+});
 
+/*
+const AssistantV1 = require('ibm-watson/assistant/v1');
 const service = new AssistantV1(
 {
   version: '2019-02-28',
@@ -61,3 +60,4 @@ service.message({
     .catch(err => {
       console.log(err)
     });
+ */
