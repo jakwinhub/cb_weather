@@ -27,7 +27,7 @@ rl.on('line', (line) => {
       console.log('world!');
       break;
     default:
-      console.log('${line.trim()}');
+      console.log(line.trim());
       break;
   }
   rl.prompt();
