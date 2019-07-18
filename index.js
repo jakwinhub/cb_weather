@@ -10,9 +10,10 @@ const rl = readline.createInterface({
 rl.prompt();
 
 rl.on('line', (line) => {
-    services.MsgToWatson(line.trim()).then((ret) => {
+  console.log(line);  
+  services.MsgToWatson(line.trim()).then((ret) => {
       console.log(ret);
-      rl.prompt();
+          rl.prompt();
     }).catch(function(err) {
         console.log("err=" + err);
         process.exit();
