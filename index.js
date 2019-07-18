@@ -1,6 +1,8 @@
 const readline = require('readline');
 const services = require("./services.js");
 
+
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -10,16 +12,29 @@ const rl = readline.createInterface({
 rl.prompt();
 
 rl.on('line', (line) => {
-  console.log(line);  
-  services.MsgToWatson(line.trim()).then((ret) => {
-      console.log(ret);
+  services.MsgToWatson(line.trim()).then((res) => {
+    let resText = res.output.text[0];
+    /*    
+    let ret = JSON.stringify(res, null, 4);
+    console.log(ret);
+    */
+    console.log(resText);
+    let entityType = '';
+    if(res.entities.length > 0) {
+      entityType = res.entities[0].entity;
+    } 
+    console.log(res.entities);
+    if(entityType === "sys-location") {
+      let location = res.entities[0].value;
+      services.GetWeather(location).then((temp) => {
+          console.log("The temp is " + temp);
           rl.prompt();
-    }).catch(function(err) {
+      });
+    } else {
+      rl.prompt();
+    } 
+  }).catch(function(err) {
         console.log("err=" + err);
         process.exit();
-    });    
-}).on('close', () => {
-  console.log('Have a great day!');
-  process.exit(0);
-});
-
+  })
+  });
