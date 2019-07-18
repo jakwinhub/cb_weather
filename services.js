@@ -12,6 +12,7 @@ const service = new AssistantV1(
   
 module.exports = {
     MsgToWatson: async function (lineText) {
+      console.log("[MsgToWatson]=" + lineText);
         var obj = await new Promise(function (resolve, reject) {
             service.message({
                 workspace_id: 'b0922859-da11-4a7c-b549-98e07996b195',
