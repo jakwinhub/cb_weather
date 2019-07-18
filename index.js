@@ -1,3 +1,5 @@
+ // I'd like to know what is the weather in stuttgart
+
 const readline = require('readline');
 const services = require("./services.js");
 
@@ -23,8 +25,8 @@ rl.on('line', (line) => {
     if(res.entities.length > 0) {
       entityType = res.entities[0].entity;
     } 
-    console.log(res.entities);
-    if(entityType === "sys-location") {
+    //console.log(res.entities);
+    if(entityType === "sys-location" || entityType === "city") {
       let location = res.entities[0].value;
       services.GetWeather(location).then((temp) => {
           console.log("The temp is " + temp);
@@ -38,3 +40,6 @@ rl.on('line', (line) => {
         process.exit();
   })
   });
+
+ 
+
